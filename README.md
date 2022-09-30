@@ -1,5 +1,5 @@
 # kuoann.github.io
-Github page for Kuoann's Note
+[Github page for Kuoann's Note](https://kuoann.github.io/)
 
 ## Install
 * Node.js
