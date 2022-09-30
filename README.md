@@ -1,6 +1,7 @@
 # kuoann.github.io
+Github page for Kuoann's Note
 
-# Install
+## Install
 * Node.js
 * Hexo-cli
 ``` shell
