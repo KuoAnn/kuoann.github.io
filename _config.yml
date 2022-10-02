@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: KuoAnn's Notes
+title: KuoAnn's Note
 subtitle: '從心出發'
-description: 'This is KuoAnn's Notes'
-keywords: 'KuoAnn'
+description: 郭安安的技術筆記 (KuoAnn's Note)
+keywords: 'KuoAnn,github page'
 author: KuoAnn
 language: 'zh-TW'
 timezone: 'Asia/Taipei'
