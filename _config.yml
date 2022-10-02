@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: KuoAnn's Note
-subtitle: 'This is subtitle'
-description: 'This is description'
+title: KuoAnn's Notes
+subtitle: '從心出發'
+description: 'This is KuoAnn's Notes'
 keywords: 'KuoAnn'
 author: KuoAnn
 language: 'zh-TW'
@@ -48,7 +48,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: false
+  line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
@@ -124,6 +124,7 @@ abbrlink:
   rep: dec    # 進位制：dec(default) and hex
 nofollow:
   enable: true
+  field: site
   exclude:  # 不加上 nofollow 的友情連結可以放在這邊。
   
 ## Themes: https://hexo.io/themes/
