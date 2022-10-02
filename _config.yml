@@ -6,7 +6,7 @@
 title: KuoAnn's Note
 subtitle: 'This is subtitle'
 description: 'This is description'
-keywords: ''
+keywords: 'KuoAnn'
 author: KuoAnn
 language: 'zh-TW'
 timezone: 'Asia/Taipei'
@@ -41,6 +41,9 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 highlight:
@@ -48,12 +51,12 @@ highlight:
   line_number: false
   auto_detect: false
   tab_replace: ''
-  wrap: false
+  wrap: true
   hljs: false
 prismjs:
   enable: false
   preprocess: true
-  line_number: true
+  line_number: false
   tab_replace: ''
 
 # Home page setting
@@ -104,6 +107,9 @@ search:
   field: post
   format: html
   limit: 10000
+sitemap:
+  path: sitemap.xml
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
