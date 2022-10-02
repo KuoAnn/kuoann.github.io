@@ -1,8 +1,9 @@
 ---
 title: Github Page Blog using Hexo & NexT Theme
 date: 2022-10-02 17:49:30
-tags: Hexo
-comments: true
+tags: 
+    - Hexo
+    - Blog
 ---
 
 NexT 有分成兩種版本，基本上你在 Google 搜尋「Hexo NexT」很有可能找到較早期的 NexT 5.1.4 版並且官網是這一個
