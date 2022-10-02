@@ -8,11 +8,31 @@
 npm install -g hexo-cli
 ```
 
+## Cmd
 ### Init
 ``` sh
 hexo init <folder>
 cd <folder>
 npm install
+```
+### New
+``` sh
+hexo new [layout] <title>
+```
+### generate
+``` sh
+hexo generate --watch
+hexo g -w
+```
+### Server
+```
+hexo server
+hexo s
+```
+
+### Clean
+```
+hexo clean
 ```
 
 ## Hexo Config
