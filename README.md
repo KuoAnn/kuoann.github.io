@@ -4,12 +4,22 @@
 ## Install
 * Node.js
 * Hexo-cli
-``` shell
+``` sh
 npm install -g hexo-cli
+```
+
+### Init
+``` sh
+hexo init <folder>
+cd <folder>
+npm install
 ```
 
 ## Hexo Config
 - https://hexo.io/zh-tw/docs/configuration
+
+### Hexo Highlight theme
+- https://theme-next.js.org/highlight/
 
 ## Hexo Theme - NexT
 - https://theme-next.js.org/
