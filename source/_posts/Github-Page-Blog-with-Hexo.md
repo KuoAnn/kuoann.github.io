@@ -22,7 +22,7 @@ tags:
 
 ## Hexo
 
-Hexo 是一個靜態頁面生成框架，搭配 Github 的話也能在線上編輯
+[Hexo](https://hexo.io/zh-tw/) 是一個靜態頁面生成框架，搭配 Github 的話也能在線上編輯
 
 ### Hexo-cli
 
