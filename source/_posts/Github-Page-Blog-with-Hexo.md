@@ -11,26 +11,25 @@ tags:
     - Hexo NexT
 ---
 
-# Github Page Blog with Hexo and NexT
-
-本篇會著重在 Hexo 的初始設定
-
-## 起源
-
 最近決定養成寫 Blog 的習慣，以隨手筆記技術文章，基於以下理由決定選用 Github Page + Hexo + NexT
 
 1. 不想花太多撰寫時間 (太麻煩也會懶得寫) -> Markdown
 2. 不想維護站台 -> Github Page
 3. 畫面簡單易讀 -> Hexo + NexT (Theme)
-4. 具搜尋功能 -> 方便未來查找筆記
+4. 具搜尋功能，方便未來查找筆記 -> Hexo
 
 <!-- more -->
 
 ## Hexo
 
-Hexo 是一個靜態頁面生成框架，以下是常用的指令，相關設定可參考 <https://hexo.io/zh-tw/docs/>
+Hexo 是一個靜態頁面生成框架，搭配 Github 的話也能在線上編輯
 
-### 安裝 Hexo-cli
+### Hexo-cli
+
+Require
+
+* Node.js
+* Hexo-cli
 
 ``` sh
 npm install -g hexo-cli
@@ -44,11 +43,29 @@ cd <folder>
 npm i
 ```
 
-### 撰寫新文章
+## 寫作
+
+### 新增文章
 
 ``` sh
 hexo new [layout] <title>
 ```
+
+### 新增草稿
+
+建立時會預設儲存於 source/_drafts 資料夾
+
+``` sh
+hexo new draft <title>
+```
+
+### 發布草稿
+
+``` sh
+hexo publish <title>
+```
+
+## 部署
 
 ### 產生靜態檔
 
@@ -62,22 +79,22 @@ hexo generate --watch
 hexo g -w
 ```
 
-### 本機測試
+### 清除靜態檔
+
+清除 public 資料夾及相關部署檔
+
+``` sh
+hexo clean
+```
+
+### 本機部署
 
 ``` sh
 hexo server
 hexo s
 ```
 
-### 清除靜態檔
-
-清除 public 資料夾
-
-``` sh
-hexo clean
-```
-
-### 手動部署網站
+### 手動部署
 
 * -g, --generate: 部署網站前先產生靜態檔案
 
@@ -86,7 +103,8 @@ hexo deploy --generate
 hexo d -g
 ```
 
-須於設定檔完成相關設定才有效 <https://hexo.io/docs/one-command-deployment>
+須於設定檔完成相關設定才有效
+> 參考： <https://hexo.io/docs/one-command-deployment>
 
 ``` yml
 deploy:
@@ -95,20 +113,12 @@ deploy:
   branch: gh-pages
 ```
 
-## 使用 Github Action 自動部署
+### 自動部署 - Github Action
 
-<https://hexo.io/zh-tw/docs/github-pages>
-
-### 目的
-
-Github Repo 偵測到 main branch 有新版本時會自動部署
-
-* 部署狀況可至 Action 頁籤觀察
-
-### 步驟
+> 參考： <https://hexo.io/zh-tw/docs/github-pages>
 
 1. 儲存庫根目錄下建立 .github/workflows/pages.yml
-2. 貼上以下設定，node-version 需修改為本機 node.js 版本
+2. 貼上以下設定，須注意第 16 行的 node-version 需修改為本機 node.js 版本
 
     ``` yml
     name: Pages
@@ -146,4 +156,11 @@ Github Repo 偵測到 main branch 有新版本時會自動部署
     ```
 
 3. push pages.yml
-4. 在儲存庫中前往 **Settings > Pages > Source**，並將 branch 改為 gh-pages
+4. 在儲存庫中前往 **Settings > Pages > Source**，並將 branch 改為 `gh-pages`
+5. 當 Github Action 偵測到 main branch 有新版本時會自動部署
+
+   * 部署狀況可至 Action 頁籤觀察
+
+### 其他設定
+
+> 參考 <https://hexo.io/zh-tw/docs/>
