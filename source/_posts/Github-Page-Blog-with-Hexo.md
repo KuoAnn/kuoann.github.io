@@ -13,10 +13,11 @@ tags:
 
 最近決定養成寫 Blog 的習慣，以隨手筆記技術文章，基於以下理由決定選用 Github Page + Hexo + NexT
 
-1. 不想花太多撰寫時間 (太麻煩也會懶得寫) -> Markdown
-2. 不想維護站台 -> Github Page
-3. 畫面簡單易讀 -> Hexo + NexT (Theme)
-4. 具搜尋功能，方便未來查找筆記 -> Hexo
+1. 快速寫作 -> Markdown
+2. 自主管理相關資源 -> Git
+3. 免費 -> Github Page
+4. 具搜尋功能，方便查找筆記 -> Hexo
+5. 畫面簡單易讀 -> Hexo + NexT (Theme)
 
 <!-- more -->
 
@@ -89,16 +90,22 @@ hexo clean
 
 ### 本機部署
 
+需安裝外掛 hexo-server
+
 ``` sh
+npm i hexo-server
 hexo server
 hexo s
 ```
 
 ### 手動部署
 
+需安裝外掛
+
 * -g, --generate: 部署網站前先產生靜態檔案
 
 ``` sh
+npm i hexo-deployer-git
 hexo deploy --generate
 hexo d -g
 ```
@@ -161,6 +168,6 @@ deploy:
 
    * 部署狀況可至 Action 頁籤觀察
 
-### 其他設定
+## 設定
 
-> 參考 <https://hexo.io/zh-tw/docs/>
+> 請參考 [Hexo 推薦外掛及相關設定](/posts/587752702)
