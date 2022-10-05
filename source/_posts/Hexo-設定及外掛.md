@@ -5,7 +5,7 @@ tags:
   - Hexo NexT
 abbrlink: 587752702
 date: 2022-10-05 21:18:53
-categories:
+categories: Others
 ---
 
 ## 推薦外掛
