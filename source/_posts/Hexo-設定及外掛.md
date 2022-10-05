@@ -23,6 +23,7 @@ categories: Others
 ## Hexo 設定
 
 直接參考以下設定檔 `_config.yml` 註解
+> Hexo version: 6.3.0
 > [官方設定說明](<https://hexo.io/zh-tw/docs/>)
 
 <!-- more -->
