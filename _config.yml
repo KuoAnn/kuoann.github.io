@@ -48,7 +48,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
   wrap: true
@@ -99,13 +99,20 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+abbrlink:
+  alg: crc32  # 演算法：crc16(default) and crc32 
+  rep: dec    # 進位制：dec(default) and hex
+nofollow:
+  enable: true
+  field: site
+  exclude:  # 不加上 nofollow 的友情連結可以放在這邊。
+sitemap:
+  path: sitemap.xml
 search:
   path: search.json
   field: post
   format: html
   limit: 10000
-sitemap:
-  path: sitemap.xml
 feed:
   enable: true
   type: atom
@@ -119,13 +126,6 @@ feed:
   icon: icon.png
   autodiscovery: true
   template:
-abbrlink:
-  alg: crc32  # 演算法：crc16(default) and crc32 
-  rep: dec    # 進位制：dec(default) and hex
-nofollow:
-  enable: true
-  field: site
-  exclude:  # 不加上 nofollow 的友情連結可以放在這邊。
   
 ## Themes: https://hexo.io/themes/
 # theme: landscape
