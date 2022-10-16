@@ -41,7 +41,7 @@ custom_file_path:
 scheme: Gemini
 
 # Dark Mode
-darkmode: true
+darkmode: false
 
 # ---------------------------------------------------------------
 # Site Information Settings
@@ -875,7 +875,7 @@ pace:
 # Canvas ribbon
 # For more information: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: true
+  enable: false
   size: 600 # The width of the ribbon
   alpha: 0.3 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon

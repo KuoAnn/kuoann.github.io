@@ -5,6 +5,4 @@ tags: {{ tags }}
 date: {{ date }}
 ---
 
-# 
-
 <!-- more -->
