@@ -4,7 +4,7 @@ categories: C#
 tags:
   - C#
   - ASP.NET Core
-  - Visual Studio
+  - .csproj
 abbrlink: 19958632
 date: 2022-10-16 15:08:26
 ---
