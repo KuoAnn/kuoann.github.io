@@ -15,10 +15,6 @@ date: 2022-10-17 22:12:10
 ![Event Log](20221017233626.png)  
 ![Attack Bar Chart](20221017221448.png)  
 
-## Source code
-
-> <https://github.com/KuoAnn/AutoBlockIp>
-
 <!-- more -->
 
 ## Nuget
@@ -153,6 +149,10 @@ date: 2022-10-17 22:12:10
 
     ![從 4625 事件附加工作排程](20221017231704.png)  
     ![觸發程序](20221017231820.png)  
+
+## Example
+
+> <https://github.com/KuoAnn/AutoBlockIp>
 
 ## 後續
 
