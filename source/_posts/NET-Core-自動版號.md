@@ -1,5 +1,5 @@
 ---
-title: .NET Core 自動更新版號
+title: [C#] .NET Core 自動更新版號
 categories: C#
 tags:
   - C#
