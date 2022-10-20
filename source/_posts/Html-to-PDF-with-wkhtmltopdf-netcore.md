@@ -1,5 +1,5 @@
 ---
-title: Html to PDF with wkhtmltopdf.netcore
+title: [C#] Html to PDF with wkhtmltopdf.netcore
 categories: C#
 tags: 
     - C#
