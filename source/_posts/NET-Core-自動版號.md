@@ -32,7 +32,7 @@ date: 2022-10-16 15:08:26
 ## 取得版本號
 
 ``` csharp
-var assemblyVersion = Assembly.GetEntryAssembly().GetName().Version;
-var fileVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
-var informationVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+var assemblyVersion = Assembly.GetEntryAssembly()?.GetName().Version;
+var fileVersion = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
+var informationVersion = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 ```
