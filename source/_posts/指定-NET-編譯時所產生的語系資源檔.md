@@ -1,6 +1,6 @@
 ---
 title: 指定 .NET 編譯時所產生的語系資源檔
-categories: Others
+categories: C#
 tags:
   - C#
   - ASP.NET Core
