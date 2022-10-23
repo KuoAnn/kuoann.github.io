@@ -154,7 +154,7 @@ date: 2022-10-17 22:12:10
 
 > <https://github.com/KuoAnn/AutoBlockIp>
 
-## 後續
+## 結果
 
 放了一個晚上就擋了 14 組 IP，網路的世界真是險惡...
 
