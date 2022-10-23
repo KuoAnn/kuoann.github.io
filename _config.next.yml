@@ -288,9 +288,24 @@ follow_me:
 # Related popular posts
 # Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
 related_posts:
-  enable: false
-  title: # Custom header, leave empty to use the default one
-  display_in_home: false
+  enable: true
+  filter_threshold: 0.2
+  related_count: 3
+  title: 相關文章 # Custom header, leave empty to use the default one
+  weight:
+    title: 0.05
+    description: 0.05
+    keywords: 0.01
+    tags: 0.005
+    categories: 0.005
+    text: 1
+  stemmers:
+    - en
+  reserved:
+    - asp.net
+    - vs.net
+    - ado.net
+    - .net
 
 # Post edit
 # Easily browse and edit blog source code online.
@@ -331,9 +346,9 @@ calendar:
   maxResults: 250
 
 # 近期文章
+recent_posts: true
 recent_posts_title: 最新文章
 recent_posts_layout: block
-recent_posts: true
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
