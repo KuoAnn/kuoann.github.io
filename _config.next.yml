@@ -895,7 +895,7 @@ pace:
 # Canvas ribbon
 # For more information: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: false
+  enable: true
   size: 600 # The width of the ribbon
   alpha: 0.3 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
