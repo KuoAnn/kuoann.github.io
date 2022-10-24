@@ -31,8 +31,6 @@ tags:
 Hexo 的 `_config.yml` 須將 theme 切換至 `next`
 
 ``` yml
-## Themes: https://hexo.io/themes/
-# theme: landscape
 theme: next
 ```
 

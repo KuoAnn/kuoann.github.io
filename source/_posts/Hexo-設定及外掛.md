@@ -185,8 +185,6 @@ search:
 本站使用 [NexT](<https://theme-next.js.org/>)，細節設定可參考下一篇
 
 ``` yml
-## Themes: https://hexo.io/themes/
-# theme: landscape
 theme: next
 ```
 
