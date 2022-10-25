@@ -1,5 +1,5 @@
 ---
-title: Hexo Next Theme
+title: Hexo Theme - Next
 categories: Others
 abbrlink: 2185127750
 date: 2022-10-23 20:14:48
