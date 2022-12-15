@@ -2,7 +2,9 @@
 title: Vue3 筆記
 categories: Node.js
 date: 2022-12-02 17:10:02
-tags: Node.js Vue
+tags: 
+  - Node.js
+  - Vue
 ---
 
 以前寫的 Vue2 都忘得差不多了，藉著最近接到 Vue3 專案的機會，重新學習一下
@@ -26,7 +28,7 @@ CDN：
 
 Vue 並非直接對頁面進行渲染，其會先於背景的 Virtual DOM 運算，當確定整個頁面結構後，再一次性地將結果繪製到頁面中，以此提升效能
 
-![](https://i.imgur.com/BFCmFYv.png)
+![Virtual DOM](https://i.imgur.com/BFCmFYv.png)
 
 ## reactive(): 資料連動
 
