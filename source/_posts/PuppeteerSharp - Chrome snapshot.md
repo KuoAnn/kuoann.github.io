@@ -3,17 +3,16 @@ title: Puppeteer Sharp - Chrome snapshot
 categories: C#
 tags: 
     - C# 
-    - Chrome
+    - Chrome Headless
+    - Puppeteer Sharp
 date: 2023-02-12T20:40:31+08:00
 ---
 
-用 C# 操作 Headless Chrome 擷圖
-
-Chrome 自 59 版起內建了 [Headless](<https://developer.chrome.com/blog/headless-chrome/>) 模式，允許透過命令列啟動 Chrome 以無 GUI 方式執行
+Chrome 自 59 版起內建了 [Headless](<https://developer.chrome.com/blog/headless-chrome/>) 模式，允許透過命令列啟動 Chrome 以無 GUI 方式執行，藉此可透過 C# 套件快速實作開啟網頁並擷圖等功能
 
 <!-- more -->
 
-## Puppeteer Sharp
+## Puppeteer Sharp 套件
 
 可透過 Nuget 下載 Puppeteer Sharp 套件，不需在伺服器安裝 Chrome，它會自行下載 Chromium
 
@@ -24,7 +23,7 @@ Chrome 自 59 版起內建了 [Headless](<https://developer.chrome.com/blog/head
 </ItemGroup>
 ```
 
-## Main function
+## Main Method
 
 ``` csharp
 using System.Text.RegularExpressions;
@@ -119,7 +118,7 @@ using (var browser = new Chrome(1500, 300))
 {
     var job = new Job
     {
-        Title = "RightAmt",
+        Title = "Google",
         Url = "https://www.google.com/"
     };
     browser.Navigate(job);
