@@ -1,5 +1,5 @@
 ---
-title: 部署 dotnet 站台
+title: 使用 cli 部署 dotnet 站台
 categories: Others
 tags: 
     - C#
