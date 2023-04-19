@@ -162,4 +162,16 @@ date: 2022-10-17 22:12:10
 
 自啟用排程後有效降低被攻擊的次數
 
-![Attack Bar Chart](20221018222136.png)  
+![Attack Bar Chart](20221018222136.png)
+
+## 踩雷
+
+* 因套件使用到 Powershell 腳本，須注意不能使用單一檔案發布，不然會出現以下錯誤：
+
+> The type initializer for 'System.Management.Automation.ExperimentalFeature' threw an exception.
+
+* 發布時需用可攜式，指定 RID 可能會抓不到特定版本的 dll
+
+> Could not load file or assembly 'Microsoft.Management.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'. 系統找不到指定的檔案。
+
+> Ref. <https://stackoverflow.com/questions/56352672/running-powershell-from-net-core-could-not-load-file-or-assembly-microsoft-ma>
