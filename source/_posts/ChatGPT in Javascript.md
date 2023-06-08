@@ -11,6 +11,7 @@ date: 2023-05-26T17:13:29+08:00
 * 透過 Js 發送 OpenAI 官方提供的 API (<https://api.openai.com/v1/chat/completions>)，需至 [官方網站](https://platform.openai.com/account/api-keys) 申請 API Key 才能使用
 * API 規格參考：
     > <https://platform.openai.com/docs/api-reference/making-requests>
+<!-- more -->
 
 ## Rq
 
@@ -74,7 +75,6 @@ curl https://api.openai.com/v1/completions \
 ## Js Sample
 
 範例以 Vanilla js 開發，可使用其他能 POST 的套件
-<!-- more -->
 
 ``` js
 function send2Gpt(sQuestion) {
