@@ -7,7 +7,7 @@ tags:
 date: 2023-12-03T20:30:23+08:00
 ---
 
-# GitHub Copilot 協作開發實戰
+# GitHub Copilot
 
 ## 簡介
 
