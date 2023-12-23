@@ -5,6 +5,7 @@ tags:
   - Openai
   - ChatGPT
   - Javascript
+  - AI
 abbrlink: 3263803727
 date: 2023-05-26 09:13:29
 ---
