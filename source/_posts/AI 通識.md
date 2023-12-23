@@ -2,6 +2,7 @@
 title: AI 通識
 categories: Others
 tags: 
+    - AI
 date: 2023-12-23T12:59:33+08:00
 ---
 
