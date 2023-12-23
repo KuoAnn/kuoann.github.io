@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#005757"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#005757">
+  <meta name="google-site-verification" content="zVSXvgtzskGLDQEvlohYf3gAR6PuzUnGi082x4qUwQg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kuoann.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"Gittalk","order":1},"disqus":{"text":"Disqus","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp","menu_item":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="自架的對外伺服器常被陌生 IP try 帳密，導致事件檢視器常常卡一堆登入失敗的紀錄而影響判讀，於是決定寫隻簡單的程式來監聽 Event Log 並即時將登入失敗的 IP 加到封鎖清單中。原本以為網路上查查資料，複製貼上改一下應該一小時左右就能搞定，結果各種撞牆卡了我一整天才完成，特此紀錄一下相關注意事項！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 自動封鎖 IP">
+<meta property="og:url" content="https://kuoann.github.io/posts/4026304689/index.html">
+<meta property="og:site_name" content="郭安安的筆記碎片">
+<meta property="og:description" content="自架的對外伺服器常被陌生 IP try 帳密，導致事件檢視器常常卡一堆登入失敗的紀錄而影響判讀，於是決定寫隻簡單的程式來監聽 Event Log 並即時將登入失敗的 IP 加到封鎖清單中。原本以為網路上查查資料，複製貼上改一下應該一小時左右就能搞定，結果各種撞牆卡了我一整天才完成，特此紀錄一下相關注意事項！">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://kuoann.github.io/posts/4026304689/20221017233626.png">
+<meta property="og:image" content="https://kuoann.github.io/posts/4026304689/20221017221448.png">
+<meta property="og:image" content="https://kuoann.github.io/posts/4026304689/20221017231704.png">
+<meta property="og:image" content="https://kuoann.github.io/posts/4026304689/20221017231820.png">
+<meta property="og:image" content="https://kuoann.github.io/posts/4026304689/20221018221135.png">
+<meta property="og:image" content="https://kuoann.github.io/posts/4026304689/20221018222136.png">
+<meta property="article:published_time" content="2022-10-17T14:12:10.000Z">
+<meta property="article:modified_time" content="2023-04-23T07:44:02.749Z">
+<meta property="article:author" content="KuoAnn">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Firewall">
+<meta property="article:tag" content="Powershell">
+<meta property="article:tag" content="Event Log">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kuoann.github.io/posts/4026304689/20221017233626.png">
+
+
+<link rel="canonical" href="https://kuoann.github.io/posts/4026304689/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://kuoann.github.io/posts/4026304689/","path":"posts/4026304689/","title":"Windows 自動封鎖 IP"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Windows 自動封鎖 IP | 郭安安的筆記碎片</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR8M77W066"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-JR8M77W066","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="郭安安的筆記碎片" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">郭安安的筆記碎片</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">因為是碎片所以看不懂很正常</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">6</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">30</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">17</span></a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nuget"><span class="nav-text">Nuget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step"><span class="nav-text">Step</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AE%80%E5%8F%96-EventLog-Security-%E5%8F%96%E5%BE%97-EventId-4625-%E7%9A%84%E7%9B%B8%E9%97%9C%E8%B3%87%E8%A8%8A"><span class="nav-text">1. 讀取 EventLog&#x2F;Security 取得 EventId&#x3D;4625 的相關資訊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BE%9E%E9%98%B2%E7%81%AB%E7%89%86%E8%A6%8F%E5%89%87%E5%8F%96%E5%BE%97%E5%B7%B2%E5%B0%81%E9%8E%96-IP-%E5%88%97%E8%A1%A8"><span class="nav-text">2. 從防火牆規則取得已封鎖 IP 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%95%B4%E4%BD%B5-IP-%E5%88%97%E8%A1%A8%E4%B8%A6%E5%AF%AB%E5%85%A5%E9%98%B2%E7%81%AB%E7%89%86%E8%A6%8F%E5%89%87"><span class="nav-text">3. 整併 IP 列表並寫入防火牆規則</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%80%8F%E9%81%8E-4625-%E4%BA%8B%E4%BB%B6%E8%A7%B8%E7%99%BC"><span class="nav-text">4. 透過 4625 事件觸發</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C"><span class="nav-text">結果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B8%A9%E9%9B%B7"><span class="nav-text">踩雷</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KuoAnn</p>
+  <div class="site-description" itemprop="description">Coding 就是複製貼上改一下</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1b2Fubg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kuoann"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmI1NDc0NDA0MEBnbWFpbC5jb20=" title="E-Mail → mailto:b54744040@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    
+    
+    <li>
+        <a href="/posts/3327344738/" title="AI 通識" target="_blank">AI 通識</a>
+    </li>
+    
+    <li>
+        <a href="/posts/582090662/" title="Github copilot" target="_blank">Github copilot</a>
+    </li>
+    
+    <li>
+        <a href="/posts/3949037657/" title="Change Git Upstream to Origin" target="_blank">Change Git Upstream to Origin</a>
+    </li>
+    
+    <li>
+        <a href="/posts/3263803727/" title="OpenAI API in Javascript" target="_blank">OpenAI API in Javascript</a>
+    </li>
+    
+    <li>
+        <a href="/posts/1661076175/" title="NPOI 自適應欄寬" target="_blank">NPOI 自適應欄寬</a>
+    </li>
+    
+</ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kuoann.github.io/posts/4026304689/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KuoAnn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭安安的筆記碎片">
+      <meta itemprop="description" content="Coding 就是複製貼上改一下">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Windows 自動封鎖 IP | 郭安安的筆記碎片">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows 自動封鎖 IP<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0t1b0Fubi9rdW9hbm4uZ2l0aHViLmlvL2VkaXQvbWFpbi9zb3VyY2UvX3Bvc3RzL1dpbmRvd3Mt6Ieq5YuV5bCB6Y6WLUlQLm1k" title="編輯"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-10-17 22:12:10" itemprop="dateCreated datePublished" datetime="2022-10-17T22:12:10+08:00">2022-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新於</span>
+      <time title="修改時間：2023-04-23 15:44:02" itemprop="dateModified" datetime="2023-04-23T15:44:02+08:00">2023-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/4026304689/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/4026304689/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>自架的對外伺服器常被陌生 IP try 帳密，導致事件檢視器常常卡一堆登入失敗的紀錄而影響判讀，於是決定寫隻簡單的程式來監聽 Event Log 並即時將登入失敗的 IP 加到封鎖清單中。原本以為網路上查查資料，複製貼上改一下應該一小時左右就能搞定，結果各種撞牆卡了我一整天才完成，特此紀錄一下相關注意事項！</p>
+<p><img data-src="/posts/4026304689/20221017233626.png" alt="Event Log"><br><img data-src="/posts/4026304689/20221017221448.png" alt="Attack Bar Chart">  </p>
+<span id="more"></span>
+
+<h2 id="Nuget"><a href="#Nuget" class="headerlink" title="Nuget"></a>Nuget</h2><figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.Extensions.Logging.EventLog"</span> <span class="attr">Version</span>=<span class="string">"6.0.0"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"System.Diagnostics.EventLog"</span> <span class="attr">Version</span>=<span class="string">"6.0.0"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.PowerShell.SDK"</span> <span class="attr">Version</span>=<span class="string">"7.2.6"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"System.Management.Automation"</span> <span class="attr">Version</span>=<span class="string">"7.2.6"</span> /&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h2><h3 id="1-讀取-EventLog-Security-取得-EventId-4625-的相關資訊"><a href="#1-讀取-EventLog-Security-取得-EventId-4625-的相關資訊" class="headerlink" title="1. 讀取 EventLog/Security 取得 EventId=4625 的相關資訊"></a>1. 讀取 <code>EventLog/Security</code> 取得 <code>EventId=4625</code> 的相關資訊</h3><ul>
+<li><p>讀取需使用 <code>系統管理員</code> 權限</p>
+</li>
+<li><p>範例：</p>
+  <figure class="highlight csharp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> entries =</span><br><span class="line">    <span class="keyword">from</span> EventLogEntry e <span class="keyword">in</span> eventLog.Entries</span><br><span class="line">    <span class="keyword">where</span> e.InstanceId == <span class="number">4625</span></span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">new</span></span><br><span class="line">    {</span><br><span class="line">        e.ReplacementStrings,</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (entries.Count() &gt; <span class="number">0</span>)</span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> events = entries.ToList();</span><br><span class="line">    <span class="keyword">var</span> ips = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">int</span>&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> d <span class="keyword">in</span> events)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">if</span> (d.ReplacementStrings.Length &gt;= <span class="number">19</span>)</span><br><span class="line">        {</span><br><span class="line">            <span class="keyword">var</span> targetUserName = d.ReplacementStrings[<span class="number">5</span>];</span><br><span class="line">            <span class="keyword">var</span> ip = d.ReplacementStrings[<span class="number">19</span>];</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><code>ReplacementStrings</code> 資料結構參考：</p>
+  <figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"SubjectUserSid"</span>&gt;</span>S-1-0-0<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"SubjectUserName"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"SubjectDomainName"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"SubjectLogonId"</span>&gt;</span>0x0<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"TargetUserSid"</span>&gt;</span>S-1-0-0<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"TargetUserName"</span>&gt;</span>ѓ®бвм<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"TargetDomainName"</span> /&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"Status"</span>&gt;</span>0xc000006d<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"FailureReason"</span>&gt;</span>%%2313<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"SubStatus"</span>&gt;</span>0xc0000064<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"LogonType"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"LogonProcessName"</span>&gt;</span>NtLmSsp<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"AuthenticationPackageName"</span>&gt;</span>NTLM<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"WorkstationName"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"TransmittedServices"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"LmPackageName"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"KeyLength"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"ProcessId"</span>&gt;</span>0x0<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"ProcessName"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"IpAddress"</span>&gt;</span>83.69.141.105<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Data</span> <span class="attr">Name</span>=<span class="string">"IpPort"</span>&gt;</span>5223<span class="tag">&lt;/<span class="name">Data</span>&gt;</span> </span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="2-從防火牆規則取得已封鎖-IP-列表"><a href="#2-從防火牆規則取得已封鎖-IP-列表" class="headerlink" title="2. 從防火牆規則取得已封鎖 IP 列表"></a>2. 從防火牆規則取得已封鎖 IP 列表</h3><ul>
+<li><p>使用 Powershell 語法 <code>Get-NetFirewallRule</code> 取得已封鎖 IP 列表</p>
+</li>
+<li><p>參考 Nuget 套件 <code>System.Management.Automation</code></p>
+</li>
+<li><p>需再參考 Nuget 套件 <code>Microsoft.PowerShell.SDK</code>，不然可能會出現以下錯誤：<br>  <span style="color:red">“Cannot load PowerShell snap-in Microsoft.PowerShell.Diagnostics because of the following error: Could not load file or assembly”</span></p>
+</li>
+<li><p>需注意執行環境的 <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL3poLXR3L3Bvd2Vyc2hlbGwvbW9kdWxlL21pY3Jvc29mdC5wb3dlcnNoZWxsLmNvcmUvYWJvdXQvYWJvdXRfZXhlY3V0aW9uX3BvbGljaWVzP3ZpZXc9cG93ZXJzaGVsbC03LjI=">Powershell 執行原則<i class="fa fa-external-link-alt"></i></span> 是否低於 <code>RemoteSigned</code>，不然可能會出現以下錯誤：<br>  <span style="color:red">Cannot be loaded because running scripts is disabled on this system</span></p>
+</li>
+<li><p>範例：</p>
+  <figure class="highlight csharp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> ps = PowerShell.Create())</span><br><span class="line">{</span><br><span class="line">    <span class="comment">// 設定執行原則</span></span><br><span class="line">    ps.AddScript(<span class="string">"Set-ExecutionPolicy RemoteSigned"</span>);</span><br><span class="line">    <span class="comment">// 從防火牆規則 firewallRuleName 取出當前已封鎖 IP 列表</span></span><br><span class="line">    ps.AddScript(<span class="string">"Import-Module NetSecurity"</span>);</span><br><span class="line">    ps.AddScript(<span class="string">$"[string[]](Get-NetFirewallRule -DisplayName '<span class="subst">{firewallRuleName}</span>' | Get-NetFirewallAddressFilter).RemoteAddress"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以上語法有特別轉型成 String[]，故可用 Invoke&lt;string&gt;() 直接取得</span></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="built_in">string</span> ip <span class="keyword">in</span> ps.Invoke&lt;<span class="built_in">string</span>&gt;())</span><br><span class="line">    {</span><br><span class="line">        blockedIps.Add(ip);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Powershell 執行異常時不會拋錯，需用以下語法取出</span></span><br><span class="line">    PSDataCollection&lt;ErrorRecord&gt; errors = ps.Streams.Error;</span><br><span class="line">    <span class="keyword">if</span> (errors != <span class="literal">null</span> &amp;&amp; errors.Count &gt; <span class="number">0</span>)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">foreach</span> (ErrorRecord err <span class="keyword">in</span> errors)</span><br><span class="line">        {</span><br><span class="line">            Write2EventLog(<span class="string">$"Error: <span class="subst">{err}</span>"</span>, EventLogEntryType.Error);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="3-整併-IP-列表並寫入防火牆規則"><a href="#3-整併-IP-列表並寫入防火牆規則" class="headerlink" title="3. 整併 IP 列表並寫入防火牆規則"></a>3. 整併 IP 列表並寫入防火牆規則</h3><ul>
+<li><p>使用 Powershell 語法  <code>Set-NetFirewallRule</code> 寫回阻擋規則</p>
+</li>
+<li><p>使用 <code>@("111.222.333.444", "111.222.333.555")</code> 格式產生 Powershell 的 String [] 參數</p>
+</li>
+<li><p>範例：</p>
+  <figure class="highlight csharp"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> ps = PowerShell.Create())</span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    sb.Append(<span class="string">"\""</span>);</span><br><span class="line">    sb.Append(<span class="built_in">string</span>.Join(<span class="string">"\",\""</span>, ips));</span><br><span class="line">    sb.Append(<span class="string">"\""</span>);</span><br><span class="line"></span><br><span class="line">    ps.AddScript(<span class="string">"Set-ExecutionPolicy RemoteSigned"</span>);</span><br><span class="line">    ps.AddScript(<span class="string">"Import-Module NetSecurity"</span>);</span><br><span class="line">    ps.AddScript(<span class="string">$"Set-NetFirewallRule -DisplayName '<span class="subst">{firewallRuleName}</span>' -Direction Inbound -Action Block -RemoteAddress @(<span class="subst">{sb}</span>)"</span>);</span><br><span class="line"></span><br><span class="line">    ps.Invoke();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="4-透過-4625-事件觸發"><a href="#4-透過-4625-事件觸發" class="headerlink" title="4. 透過 4625 事件觸發"></a>4. 透過 <code>4625</code> 事件觸發</h3><ul>
+<li><p>可直接從 <code>EventLog/Security</code> 事件附加工作排程</p>
+<p>  <img data-src="/posts/4026304689/20221017231704.png" alt="從 4625 事件附加工作排程"><br>  <img data-src="/posts/4026304689/20221017231820.png" alt="觸發程序"></p>
+</li>
+</ul>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0t1b0Fubi9BdXRvQmxvY2tJcA==">https://github.com/KuoAnn/AutoBlockIp<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><p>放了一個晚上就擋了 14 組 IP，網路的世界真是險惡…</p>
+<p><img data-src="/posts/4026304689/20221018221135.png" alt="Event Log">  </p>
+<p>自啟用排程後有效降低被攻擊的次數</p>
+<p><img data-src="/posts/4026304689/20221018222136.png" alt="Attack Bar Chart"></p>
+<h2 id="踩雷"><a href="#踩雷" class="headerlink" title="踩雷"></a>踩雷</h2><ul>
+<li>因套件使用到 Powershell 腳本，須注意不能使用單一檔案發布，不然會出現以下錯誤：</li>
+</ul>
+<blockquote>
+<p>The type initializer for ‘System.Management.Automation.ExperimentalFeature’ threw an exception.</p>
+</blockquote>
+<ul>
+<li>發布時需用可攜式，指定 RID 可能會抓不到特定版本的 dll</li>
+</ul>
+<blockquote>
+<p>Could not load file or assembly ‘Microsoft.Management.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35’. 系統找不到指定的檔案。</p>
+</blockquote>
+<blockquote>
+<p>Ref. <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvNTYzNTI2NzIvcnVubmluZy1wb3dlcnNoZWxsLWZyb20tbmV0LWNvcmUtY291bGQtbm90LWxvYWQtZmlsZS1vci1hc3NlbWJseS1taWNyb3NvZnQtbWE=">https://stackoverflow.com/questions/56352672/running-powershell-from-net-core-could-not-load-file-or-assembly-microsoft-ma<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相關文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2022-10-19</div>
+      <div class="popular-posts-title"><a href="posts/2071791023/" rel="bookmark">指定 .NET 編譯時所產生的語系資源檔</a></div>
+        <div class="popular-posts-excerpt"><p><p>專案在編譯支援多語系的程式庫時，可能會產生一堆用不到的語系資源 (<span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL2V4dGVuc2lvbnMvY3JlYXRlLXNhdGVsbGl0ZS1hc3NlbWJsaWVzP1dULm1jX2lkPURPUC1NVlAtMzc1ODA=">衛星組件 (Satellite Assembly)<i class="fa fa-external-link-alt"></i></span>)。若僅會用到部分語系時，可於專案檔 (*.csproj) 內加入 &lt;<span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL3Byb2plY3Qtc2RrL21zYnVpbGQtcHJvcHM/V1QubWNfaWQ9RE9QLU1WUC0zNzU4MCNzYXRlbGxpdGVyZXNvdXJjZWxhbmd1YWdlcw==">SatelliteResourceLanguages<i class="fa fa-external-link-alt"></i></span>&gt;</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">SatelliteResourceLanguages</span>&gt;</span>en;zh-TW<span class="tag">&lt;/<span class="name">SatelliteResourceLanguages</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure></p></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Windows/" rel="tag"><i class="fa fa-tag"></i> Windows</a>
+              <a href="/tags/Firewall/" rel="tag"><i class="fa fa-tag"></i> Firewall</a>
+              <a href="/tags/Powershell/" rel="tag"><i class="fa fa-tag"></i> Powershell</a>
+              <a href="/tags/Event-Log/" rel="tag"><i class="fa fa-tag"></i> Event Log</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/19958632/" rel="prev" title=".NET Core 自動更新版號">
+                  <i class="fa fa-chevron-left"></i> .NET Core 自動更新版號
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/2071791023/" rel="next" title="指定 .NET 編譯時所產生的語系資源檔">
+                  指定 .NET 編譯時所產生的語系資源檔 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">Gittalk</a></li>
+            <li class="tab"><a href="#comment-disqus">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KuoAnn</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="600" alpha="0.3" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-kuoann-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"KuoAnn","repo":"kuoann.github.io","client_id":"07ab0fda6282671c05f2","client_secret":"96bd77e90fb5809b8df39cea1b9628540339f3a1","admin_user":"KuoAnn","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"6a462b3ec07a1a86e3894ead523639bd"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

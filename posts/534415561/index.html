@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#005757"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#005757">
+  <meta name="google-site-verification" content="zVSXvgtzskGLDQEvlohYf3gAR6PuzUnGi082x4qUwQg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kuoann.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"Gittalk","order":1},"disqus":{"text":"Disqus","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp","menu_item":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="最近決定養成寫 Blog 的習慣，以隨手筆記技術文章，基於以下理由決定選用 Github Page + Hexo + NexT  快速寫作 -&gt; Markdown  自主管理相關資源 -&gt; Git  免費 -&gt; Github Page  具搜尋功能，方便查找筆記 -&gt; Hexo  畫面簡單易讀 -&gt; Hexo + NexT (Theme)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github Page Blog with Hexo">
+<meta property="og:url" content="https://kuoann.github.io/posts/534415561/index.html">
+<meta property="og:site_name" content="郭安安的筆記碎片">
+<meta property="og:description" content="最近決定養成寫 Blog 的習慣，以隨手筆記技術文章，基於以下理由決定選用 Github Page + Hexo + NexT  快速寫作 -&gt; Markdown  自主管理相關資源 -&gt; Git  免費 -&gt; Github Page  具搜尋功能，方便查找筆記 -&gt; Hexo  畫面簡單易讀 -&gt; Hexo + NexT (Theme)">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-10-02T13:09:06.000Z">
+<meta property="article:modified_time" content="2022-10-23T11:43:32.573Z">
+<meta property="article:author" content="KuoAnn">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Hexo NexT">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Github Page">
+<meta property="article:tag" content="Github Action">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://kuoann.github.io/posts/534415561/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://kuoann.github.io/posts/534415561/","path":"posts/534415561/","title":"Github Page Blog with Hexo"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Github Page Blog with Hexo | 郭安安的筆記碎片</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR8M77W066"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-JR8M77W066","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="郭安安的筆記碎片" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">郭安安的筆記碎片</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">因為是碎片所以看不懂很正常</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">6</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">30</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">17</span></a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo"><span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-cli"><span class="nav-text">Hexo-cli</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%AB%E4%BD%9C"><span class="nav-text">寫作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E6%96%87%E7%AB%A0"><span class="nav-text">新增文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E8%8D%89%E7%A8%BF"><span class="nav-text">新增草稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BC%E5%B8%83%E8%8D%89%E7%A8%BF"><span class="nav-text">發布草稿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A2%E7%94%9F%E9%9D%9C%E6%85%8B%E6%AA%94"><span class="nav-text">產生靜態檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E9%9D%9C%E6%85%8B%E6%AA%94"><span class="nav-text">清除靜態檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%A9%9F%E9%83%A8%E7%BD%B2"><span class="nav-text">本機部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8B%95%E9%83%A8%E7%BD%B2"><span class="nav-text">手動部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8B%95%E9%83%A8%E7%BD%B2-Github-Action"><span class="nav-text">自動部署 - Github Action</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A"><span class="nav-text">設定</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KuoAnn</p>
+  <div class="site-description" itemprop="description">Coding 就是複製貼上改一下</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1b2Fubg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kuoann"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmI1NDc0NDA0MEBnbWFpbC5jb20=" title="E-Mail → mailto:b54744040@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    
+    
+    <li>
+        <a href="/posts/3327344738/" title="AI 通識" target="_blank">AI 通識</a>
+    </li>
+    
+    <li>
+        <a href="/posts/582090662/" title="Github copilot" target="_blank">Github copilot</a>
+    </li>
+    
+    <li>
+        <a href="/posts/3949037657/" title="Change Git Upstream to Origin" target="_blank">Change Git Upstream to Origin</a>
+    </li>
+    
+    <li>
+        <a href="/posts/3263803727/" title="OpenAI API in Javascript" target="_blank">OpenAI API in Javascript</a>
+    </li>
+    
+    <li>
+        <a href="/posts/1661076175/" title="NPOI 自適應欄寬" target="_blank">NPOI 自適應欄寬</a>
+    </li>
+    
+</ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kuoann.github.io/posts/534415561/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KuoAnn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭安安的筆記碎片">
+      <meta itemprop="description" content="Coding 就是複製貼上改一下">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Github Page Blog with Hexo | 郭安安的筆記碎片">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Github Page Blog with Hexo<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0t1b0Fubi9rdW9hbm4uZ2l0aHViLmlvL2VkaXQvbWFpbi9zb3VyY2UvX3Bvc3RzL0dpdGh1Yi1QYWdlLUJsb2ctd2l0aC1IZXhvLm1k" title="編輯"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-10-02 21:09:06" itemprop="dateCreated datePublished" datetime="2022-10-02T21:09:06+08:00">2022-10-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新於</span>
+      <time title="修改時間：2022-10-23 19:43:32" itemprop="dateModified" datetime="2022-10-23T19:43:32+08:00">2022-10-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/534415561/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/534415561/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>最近決定養成寫 Blog 的習慣，以隨手筆記技術文章，基於以下理由決定選用 Github Page + Hexo + NexT</p>
+<ol>
+<li>快速寫作 -&gt; Markdown</li>
+<li> 自主管理相關資源 -&gt; Git</li>
+<li> 免費 -&gt; Github Page</li>
+<li> 具搜尋功能，方便查找筆記 -&gt; Hexo</li>
+<li> 畫面簡單易讀 -&gt; Hexo + NexT (Theme)</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLXR3Lw==">Hexo<i class="fa fa-external-link-alt"></i></span> 是一個靜態頁面生成框架，搭配 Github 的話也能在線上編輯</p>
+<h3 id="Hexo-cli"><a href="#Hexo-cli" class="headerlink" title="Hexo-cli"></a>Hexo-cli</h3><p>Require</p>
+<ul>
+<li>Node.js</li>
+<li>Hexo-cli</li>
+</ul>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm i</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="寫作"><a href="#寫作" class="headerlink" title="寫作"></a>寫作</h2><h3 id="新增文章"><a href="#新增文章" class="headerlink" title="新增文章"></a>新增文章</h3><figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="新增草稿"><a href="#新增草稿" class="headerlink" title="新增草稿"></a>新增草稿</h3><p>建立時會預設儲存於 source/_drafts 資料夾</p>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">hexo new draft &lt;title&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="發布草稿"><a href="#發布草稿" class="headerlink" title="發布草稿"></a>發布草稿</h3><figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">hexo publish &lt;title&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="產生靜態檔"><a href="#產生靜態檔" class="headerlink" title="產生靜態檔"></a>產生靜態檔</h3><p>產生靜態檔至 public 資料夾</p>
+<ul>
+<li>-w,–watch: 監看檔案變更</li>
+<li> -d,–deploy: 產生完成即部署網站 </li>
+</ul>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">hexo generate --watch</span><br><span class="line">hexo g -w</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="清除靜態檔"><a href="#清除靜態檔" class="headerlink" title="清除靜態檔"></a>清除靜態檔</h3><p>清除 public 資料夾及相關部署檔</p>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="本機部署"><a href="#本機部署" class="headerlink" title="本機部署"></a>本機部署</h3><p>需安裝外掛 hexo-server</p>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">npm i hexo-server</span><br><span class="line">hexo server</span><br><span class="line">hexo s</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="手動部署"><a href="#手動部署" class="headerlink" title="手動部署"></a>手動部署</h3><p>需安裝外掛</p>
+<ul>
+<li>-g, –generate: 部署網站前先產生靜態檔案 </li>
+</ul>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">npm i hexo-deployer-git</span><br><span class="line">hexo deploy --generate</span><br><span class="line">hexo d -g</span><br></pre></td></tr></tbody></table></figure>
+
+<p>須於設定檔完成相關設定才有效</p>
+<blockquote>
+<p>參考： <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudA==">https://hexo.io/docs/one-command-deployment<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">'git'</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">&lt;https://github.com/KuoAnn/kuoann.github.io.git&gt;</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="自動部署-Github-Action"><a href="#自動部署-Github-Action" class="headerlink" title="自動部署 - Github Action"></a>自動部署 - Github Action</h3><blockquote>
+<p>參考： <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLXR3L2RvY3MvZ2l0aHViLXBhZ2Vz">https://hexo.io/zh-tw/docs/github-pages<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<ol>
+<li><p>儲存庫根目錄下建立 .github/workflows/pages.yml</p>
+</li>
+<li><p>貼上以下設定，須注意第 16 行的 node-version 需修改為本機 node.js 版本</p>
+ <figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Pages</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line"><span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">main</span>  <span class="comment"># default branch</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line"><span class="attr">pages:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span> <span class="number">16.</span><span class="string">x</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">        <span class="attr">node-version:</span> <span class="string">'16'</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">NPM</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">        <span class="attr">key:</span> <span class="string">${{</span> <span class="string">runner.OS</span> <span class="string">}}-npm-cache</span></span><br><span class="line">        <span class="attr">restore-keys:</span> <span class="string">|</span></span><br><span class="line"><span class="string">            ${{ runner.OS }}-npm-cache</span></span><br><span class="line"><span class="string"></span>    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">        <span class="attr">github_token:</span> <span class="string">${{</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">}}</span></span><br><span class="line">        <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>push pages.yml</p>
+</li>
+<li><p>在儲存庫中前往 <strong>Settings &gt; Pages &gt; Source</strong>，並將 branch 改為 <code>gh-pages</code></p>
+</li>
+<li><p>當 Github Action 偵測到 main branch 有新版本時會自動部署</p>
+<ul>
+<li>部署狀況可至 Action 頁籤觀察</li>
+</ul>
+</li>
+</ol>
+<h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><blockquote>
+<p>請參考 <a href="/posts/587752702">Hexo 推薦外掛及相關設定</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相關文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2023-12-03</div>
+      <div class="popular-posts-title"><a href="posts/582090662/" rel="bookmark">Github copilot</a></div>
+        <div class="popular-posts-excerpt"><p><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><ul>
+<li>基於 AI / LLM 技術的開發助手，用於改善開發者體驗 (DX)</li>
+<li> 核心技術來自於 OpenAI 的 GPT-3.5 Turbo 模型<ul>
+<li>該模型基於海量的自然語言文本資料集進行訓練，並具備一定的推理能力</li>
+</ul>
+</li>
+<li>明年初有機會到 GPT 4 (32K)</li>
+<li> 幾乎支援「任何」程式語言</li>
+<li>官方宣稱不會用客戶資料作為訓練模型</p></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2022-10-23</div>
+      <div class="popular-posts-title"><a href="posts/2185127750/" rel="bookmark">Hexo Theme - Next</a></div>
+        <div class="popular-posts-excerpt"><p><p>本站 Hexo 使用 <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">NexT<i class="fa fa-external-link-alt"></i></span> 主題，須注意 Github Repo 有新舊版之分，舊版已不再維護，為避免混亂以下僅提供新版連結</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>官方提供兩種安裝方式：</p>
+<ol>
+<li><p>npm 下載 (建議)</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo-theme-next</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Git Clone</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<p>Hexo 的 <code>_config.yml</code> 須將 theme 切換至 <code>next</code></p>
+<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="NexT-設定"><a href="#NexT-設定" class="headerlink" title="NexT 設定"></a>NexT 設定</h2><p>詳細設定內容網路上滿多，以下僅提供需特別注意的部分</p>
+<ul>
+<li>若是用 git clone 的方式安裝，請盡量避免直接修改 themes 下的 <code>_config.yml</code>。</li>
+<li>Hexo 本身有提供覆寫方法，可於根目錄下建立 <code>_config.next.yml</code>，並將相關設定無腦複製進來再做修改。</li>
+</ul></p></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2022-10-15</div>
+      <div class="popular-posts-title"><a href="posts/4215572637/" rel="bookmark">Html to PDF with wkhtmltopdf.netcore</a></div>
+        <div class="popular-posts-excerpt"><p><p>某次接到的需求需實現以下功能，特此紀錄一下</p>
+<ol>
+<li>透過網頁傳入 html 字串並下載成 PDF 檔</li>
+<li>資料不落地，全程用 Stream 處理<ul>
+<li>因具多台 AP Server，若產生實體檔案會需要多生一台代理伺服器</li>
+</ul>
+</li>
+<li> Header 動態浮水印，需加入圖片及建立日期</li>
+<li>密碼保護</li>
+</ol>
+<p>原本預計採用常見的 <span class="exturl" data-url="aHR0cHM6Ly93d3cubnVnZXQub3JnL3BhY2thZ2VzP3E9aVRleHRTaGFycA==">iTextSharp<i class="fa fa-external-link-alt"></i></span> 處理，但後來發現有中文亂碼的問題且轉換的相容性不太好，故決定改用 <span class="exturl" data-url="aHR0cHM6Ly93d3cubnVnZXQub3JnL3BhY2thZ2VzL1draHRtbHRvcGRmLk5ldENvcmUvNS4wLjItcHJldmlldw==">wkhtmltopdf.netcore<i class="fa fa-external-link-alt"></i></span>，結果又發現該套件 (此時是 v5.0.2 Preview 版) 不支援加密功能，最終決定兩者混用</p></p></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/Hexo-NexT/" rel="tag"><i class="fa fa-tag"></i> Hexo NexT</a>
+              <a href="/tags/Github/" rel="tag"><i class="fa fa-tag"></i> Github</a>
+              <a href="/tags/Github-Page/" rel="tag"><i class="fa fa-tag"></i> Github Page</a>
+              <a href="/tags/Github-Action/" rel="tag"><i class="fa fa-tag"></i> Github Action</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/587752702/" rel="next" title="Hexo 推薦外掛及相關設定">
+                  Hexo 推薦外掛及相關設定 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">Gittalk</a></li>
+            <li class="tab"><a href="#comment-disqus">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KuoAnn</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="600" alpha="0.3" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-kuoann-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"KuoAnn","repo":"kuoann.github.io","client_id":"07ab0fda6282671c05f2","client_secret":"96bd77e90fb5809b8df39cea1b9628540339f3a1","admin_user":"KuoAnn","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"60328b6ed8745643bc015f13b156193a"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

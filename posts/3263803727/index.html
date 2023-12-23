@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#005757"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#005757">
+  <meta name="google-site-verification" content="zVSXvgtzskGLDQEvlohYf3gAR6PuzUnGi082x4qUwQg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kuoann.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"Gittalk","order":1},"disqus":{"text":"Disqus","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp","menu_item":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="透過 Js 發送 OpenAI 官方提供的 API (https:&#x2F;&#x2F;api.openai.com&#x2F;v1&#x2F;chat&#x2F;completions)，需至 官方網站 申請 API Key 才能使用  API 規格參考： https:&#x2F;&#x2F;platform.openai.com&#x2F;docs&#x2F;api-reference&#x2F;making-requests">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI API in Javascript">
+<meta property="og:url" content="https://kuoann.github.io/posts/3263803727/index.html">
+<meta property="og:site_name" content="郭安安的筆記碎片">
+<meta property="og:description" content="透過 Js 發送 OpenAI 官方提供的 API (https:&#x2F;&#x2F;api.openai.com&#x2F;v1&#x2F;chat&#x2F;completions)，需至 官方網站 申請 API Key 才能使用  API 規格參考： https:&#x2F;&#x2F;platform.openai.com&#x2F;docs&#x2F;api-reference&#x2F;making-requests">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-05-26T01:13:29.000Z">
+<meta property="article:modified_time" content="2023-12-23T15:29:15.710Z">
+<meta property="article:author" content="KuoAnn">
+<meta property="article:tag" content="Openai">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://kuoann.github.io/posts/3263803727/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://kuoann.github.io/posts/3263803727/","path":"posts/3263803727/","title":"OpenAI API in Javascript"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OpenAI API in Javascript | 郭安安的筆記碎片</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR8M77W066"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-JR8M77W066","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="郭安安的筆記碎片" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">郭安安的筆記碎片</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">因為是碎片所以看不懂很正常</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">6</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">30</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">17</span></a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rq"><span class="nav-text">Rq</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Header"><span class="nav-text">Header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Body"><span class="nav-text">Body</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rs"><span class="nav-text">Rs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Js-Sample"><span class="nav-text">Js Sample</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KuoAnn</p>
+  <div class="site-description" itemprop="description">Coding 就是複製貼上改一下</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1b2Fubg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kuoann"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmI1NDc0NDA0MEBnbWFpbC5jb20=" title="E-Mail → mailto:b54744040@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    
+    
+    <li>
+        <a href="/posts/3327344738/" title="AI 通識" target="_blank">AI 通識</a>
+    </li>
+    
+    <li>
+        <a href="/posts/582090662/" title="Github copilot" target="_blank">Github copilot</a>
+    </li>
+    
+    <li>
+        <a href="/posts/3949037657/" title="Change Git Upstream to Origin" target="_blank">Change Git Upstream to Origin</a>
+    </li>
+    
+    <li>
+        <a href="/posts/3263803727/" title="OpenAI API in Javascript" target="_blank">OpenAI API in Javascript</a>
+    </li>
+    
+    <li>
+        <a href="/posts/1661076175/" title="NPOI 自適應欄寬" target="_blank">NPOI 自適應欄寬</a>
+    </li>
+    
+</ul>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://kuoann.github.io/posts/3263803727/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KuoAnn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭安安的筆記碎片">
+      <meta itemprop="description" content="Coding 就是複製貼上改一下">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OpenAI API in Javascript | 郭安安的筆記碎片">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OpenAI API in Javascript<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0t1b0Fubi9rdW9hbm4uZ2l0aHViLmlvL2VkaXQvbWFpbi9zb3VyY2UvX3Bvc3RzL0NoYXRHUFQgaW4gSmF2YXNjcmlwdC5tZA==" title="編輯"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2023-05-26 09:13:29" itemprop="dateCreated datePublished" datetime="2023-05-26T09:13:29+08:00">2023-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新於</span>
+      <time title="修改時間：2023-12-23 23:29:15" itemprop="dateModified" datetime="2023-12-23T23:29:15+08:00">2023-12-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/3263803727/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/3263803727/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li>透過 Js 發送 OpenAI 官方提供的 API (<span class="exturl" data-url="aHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MS9jaGF0L2NvbXBsZXRpb25z">https://api.openai.com/v1/chat/completions<i class="fa fa-external-link-alt"></i></span>)，需至 <span class="exturl" data-url="aHR0cHM6Ly9wbGF0Zm9ybS5vcGVuYWkuY29tL2FjY291bnQvYXBpLWtleXM=">官方網站<i class="fa fa-external-link-alt"></i></span> 申請 API Key 才能使用</li>
+<li> API 規格參考：<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wbGF0Zm9ybS5vcGVuYWkuY29tL2RvY3MvYXBpLXJlZmVyZW5jZS9tYWtpbmctcmVxdWVzdHM=">https://platform.openai.com/docs/api-reference/making-requests<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<span id="more"></span></li>
+</ul>
+<h2 id="Rq"><a href="#Rq" class="headerlink" title="Rq"></a>Rq</h2><h3 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h3><figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">curl https://api.openai.com/v1/completions \</span><br><span class="line">  -H <span class="string">"Content-Type: application/json"</span> \</span><br><span class="line">  -H <span class="string">"Authorization: Bearer <span class="variable">$OPENAI_API_KEY</span>"</span> \</span><br><span class="line">  -d <span class="string">'{</span></span><br><span class="line"><span class="string">    "model": "text-davinci-003",</span></span><br><span class="line"><span class="string">    "prompt": "Say this is a test",</span></span><br><span class="line"><span class="string">    "max_tokens": 7,</span></span><br><span class="line"><span class="string">    "temperature": 0</span></span><br><span class="line"><span class="string">  }'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h3><figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">     <span class="string">"model"</span>: <span class="string">"gpt-3.5-turbo"</span>,</span><br><span class="line">     <span class="string">"messages"</span>: [{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"Say this is a test!"</span>}],</span><br><span class="line">     <span class="string">"temperature"</span>: <span class="number">0.7</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>model：指定語言模型，不同語言模型的上行內容會不同，以下以 <code>gpt-3.5-turbo</code> 參考<ul>
+<li>雖上行指定 <code>gpt3.5-turbo</code>，但從下行的資訊可以看出實際使用的會是 <code>gpt-3.5-turbo-0301</code>，但該模型</li>
+</ul>
+</li>
+<li> message：<ul>
+<li>role=<code>system</code>：指定角色 (非必填)，可用中文，範例用英文的目的是為了降 Token 數，以節省成本</li>
+<li> role=<code>user</code>：問題內容，如有延續關係可串多組</li>
+</ul>
+</li>
+<li> temperature：What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.</li>
+</ul>
+<h2 id="Rs"><a href="#Rs" class="headerlink" title="Rs"></a>Rs</h2><figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">   <span class="string">"id"</span>:<span class="string">"chatcmpl-abc123"</span>,</span><br><span class="line">   <span class="string">"object"</span>:<span class="string">"chat.completion"</span>,</span><br><span class="line">   <span class="string">"created"</span>:<span class="number">1677858242</span>,</span><br><span class="line">   <span class="string">"model"</span>:<span class="string">"gpt-3.5-turbo-0301"</span>,</span><br><span class="line">   <span class="string">"usage"</span>:{</span><br><span class="line">      <span class="string">"prompt_tokens"</span>:<span class="number">13</span>,</span><br><span class="line">      <span class="string">"completion_tokens"</span>:<span class="number">7</span>,</span><br><span class="line">      <span class="string">"total_tokens"</span>:<span class="number">20</span></span><br><span class="line">   },</span><br><span class="line">   <span class="string">"choices"</span>:[</span><br><span class="line">      {</span><br><span class="line">         <span class="string">"message"</span>:{</span><br><span class="line">            <span class="string">"role"</span>:<span class="string">"assistant"</span>,</span><br><span class="line">            <span class="string">"content"</span>:<span class="string">"\n\nThis is a test!"</span></span><br><span class="line">         },</span><br><span class="line">         <span class="string">"finish_reason"</span>:<span class="string">"stop"</span>,</span><br><span class="line">         <span class="string">"index"</span>:<span class="number">0</span></span><br><span class="line">      }</span><br><span class="line">   ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Js-Sample"><a href="#Js-Sample" class="headerlink" title="Js Sample"></a>Js Sample</h2><p>範例以 Vanilla js 開發，可使用其他能 POST 的套件</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">send2Gpt</span>(<span class="params">sQuestion</span>) {</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable constant_">OPENAI_API_KEY</span> == <span class="literal">null</span>) {</span><br><span class="line">        <span class="variable constant_">OPENAI_API_KEY</span> = <span class="title function_">prompt</span>(<span class="string">"Enter Your OPENAI_API_KEY"</span>, <span class="string">""</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable constant_">OPENAI_API_KEY</span> === <span class="literal">null</span>) {</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">"You did not enter OPENAI_API_KEY"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (sQuestion === <span class="string">""</span>) {</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">"Type in your question!"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> q = <span class="string">"Translate into zh-TW\n"</span> + sQuestion;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"Send Gpt: "</span> + q);</span><br><span class="line"></span><br><span class="line">    $(<span class="string">"#btnTransAll"</span>).<span class="title function_">text</span>(<span class="string">"Translating..."</span>).<span class="title function_">prop</span>(<span class="string">"disabled"</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> oHttp = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    oHttp.<span class="title function_">open</span>(<span class="string">"POST"</span>, <span class="string">"https://api.openai.com/v1/chat/completions"</span>);</span><br><span class="line">    oHttp.<span class="title function_">setRequestHeader</span>(<span class="string">"Accept"</span>, <span class="string">"application/json"</span>);</span><br><span class="line">    oHttp.<span class="title function_">setRequestHeader</span>(<span class="string">"Content-Type"</span>, <span class="string">"application/json"</span>);</span><br><span class="line">    oHttp.<span class="title function_">setRequestHeader</span>(<span class="string">"Authorization"</span>, <span class="string">"Bearer "</span> + <span class="variable constant_">OPENAI_API_KEY</span>);</span><br><span class="line">    oHttp.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">        $(<span class="string">"#btnTransAll"</span>).<span class="title function_">text</span>(<span class="string">"Done"</span>).<span class="title function_">prop</span>(<span class="string">"disabled"</span>, <span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">if</span> (oHttp.<span class="property">readyState</span> === <span class="number">4</span>) {</span><br><span class="line">            <span class="keyword">var</span> oJson = {};</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> {</span><br><span class="line">                oJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(oHttp.<span class="property">responseText</span>);</span><br><span class="line">            } <span class="keyword">catch</span> (ex) {</span><br><span class="line">                <span class="title function_">alert</span>(<span class="string">"GPT Parse Error: "</span> + ex.<span class="property">message</span>);</span><br><span class="line">                log.<span class="title function_">console</span>(<span class="string">"Resp:"</span> + oHttp.<span class="property">responseText</span>);</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (oJson.<span class="property">error</span> &amp;&amp; oJson.<span class="property">error</span>.<span class="property">message</span>) {</span><br><span class="line">                <span class="title function_">alert</span>(<span class="string">"GPT Error: "</span> + oJson.<span class="property">error</span>.<span class="property">message</span>);</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">eror</span>(<span class="string">"GPT Error: "</span> + oJson.<span class="property">error</span>.<span class="property">message</span>);</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (oJson.<span class="property">choices</span> &amp;&amp; oJson.<span class="property">choices</span>[<span class="number">0</span>].<span class="property">message</span>) {</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(oJson);</span><br><span class="line">                <span class="keyword">var</span> s = oJson.<span class="property">choices</span>[<span class="number">0</span>].<span class="property">message</span>;</span><br><span class="line">                <span class="keyword">if</span> (s == <span class="string">""</span>) {</span><br><span class="line">                    <span class="title function_">alert</span>(<span class="string">"GPT response empty"</span>);</span><br><span class="line">                } <span class="keyword">else</span> {</span><br><span class="line">                    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">"OPENAI_API_KEY"</span>, <span class="variable constant_">OPENAI_API_KEY</span>);</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment">// Get Answer</span></span><br><span class="line">                    <span class="title function_">alert</span>(s.<span class="property">content</span>);</span><br><span class="line">                }</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="title function_">alert</span>(<span class="string">"GPT Occurs Exception: "</span> + oHttp.<span class="property">responseText</span>);</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">"GPT Occurs Exception: "</span> + oHttp.<span class="property">responseText</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> data = {</span><br><span class="line">        <span class="attr">model</span>: <span class="string">"gpt-3.5-turbo"</span>,</span><br><span class="line">        <span class="attr">messages</span>: [</span><br><span class="line">            { <span class="attr">role</span>: <span class="string">"system"</span>, <span class="attr">content</span>: <span class="string">"Translator"</span> },</span><br><span class="line">            { <span class="attr">role</span>: <span class="string">"user"</span>, <span class="attr">content</span>: q },</span><br><span class="line">        ],</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    oHttp.<span class="title function_">send</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data));</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相關文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2022-10-23</div>
+      <div class="popular-posts-title"><a href="posts/2185127750/" rel="bookmark">Hexo Theme - Next</a></div>
+        <div class="popular-posts-excerpt"><p><p>本站 Hexo 使用 <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">NexT<i class="fa fa-external-link-alt"></i></span> 主題，須注意 Github Repo 有新舊版之分，舊版已不再維護，為避免混亂以下僅提供新版連結</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>官方提供兩種安裝方式：</p>
+<ol>
+<li><p>npm 下載 (建議)</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo-theme-next</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Git Clone</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<p>Hexo 的 <code>_config.yml</code> 須將 theme 切換至 <code>next</code></p>
+<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="NexT-設定"><a href="#NexT-設定" class="headerlink" title="NexT 設定"></a>NexT 設定</h2><p>詳細設定內容網路上滿多，以下僅提供需特別注意的部分</p>
+<ul>
+<li>若是用 git clone 的方式安裝，請盡量避免直接修改 themes 下的 <code>_config.yml</code>。</li>
+<li>Hexo 本身有提供覆寫方法，可於根目錄下建立 <code>_config.next.yml</code>，並將相關設定無腦複製進來再做修改。</li>
+</ul></p></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2023-12-23</div>
+      <div class="popular-posts-title"><a href="posts/3327344738/" rel="bookmark">AI 通識</a></div>
+        <div class="popular-posts-excerpt"><p><h2 id="What-is-AI"><a href="#What-is-AI" class="headerlink" title="What is AI"></a>What is AI</h2><ul>
+<li>工人智慧 vs. 人工智慧</li>
+</ul>
+<p><img data-src="https://hackmd.io/_uploads/rkrlxiLLT.png" alt="image"></p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9oYWNrbWQuaW8vQHdlYmNvbmYvQmtJbVEwRHMzLyUyRlR6NFhEaDc0U3FHRERaaUdjV0JhS2c=">WebConf 2023 共筆<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote></p></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2022-12-02</div>
+      <div class="popular-posts-title"><a href="posts/1306031307/" rel="bookmark">Vue3 筆記</a></div>
+        <div class="popular-posts-excerpt"><p><p>以前寫的 Vue2 都忘得差不多了，藉著最近接到 Vue3 專案的機會，重新學習一下</p>
+<p>Vue3 推薦結合以下套件使用，透過官方推薦的初始化指令 <code>npm init vue@latest</code> 可自動建立一個基礎的 Vue 專案</p>
+<ul>
+<li>Vite: 建置工具</li>
+<li> Pinia: 狀態管理</li>
+</ul>
+<h2 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h2><p>CDN：</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://unpkg.com/vue@next"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure></p></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Openai/" rel="tag"><i class="fa fa-tag"></i> Openai</a>
+              <a href="/tags/ChatGPT/" rel="tag"><i class="fa fa-tag"></i> ChatGPT</a>
+              <a href="/tags/Javascript/" rel="tag"><i class="fa fa-tag"></i> Javascript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/1661076175/" rel="prev" title="NPOI 自適應欄寬">
+                  <i class="fa fa-chevron-left"></i> NPOI 自適應欄寬
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/3949037657/" rel="next" title="Change Git Upstream to Origin">
+                  Change Git Upstream to Origin <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">Gittalk</a></li>
+            <li class="tab"><a href="#comment-disqus">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KuoAnn</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="600" alpha="0.3" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-kuoann-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"KuoAnn","repo":"kuoann.github.io","client_id":"07ab0fda6282671c05f2","client_secret":"96bd77e90fb5809b8df39cea1b9628540339f3a1","admin_user":"KuoAnn","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"71065b969f013154ad231926d2074643"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
