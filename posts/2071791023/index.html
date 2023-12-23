@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#005757"><meta name="generator" content="Hexo 6.3.0">
 
-
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -16,12 +15,12 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/green/pace-theme-minimal.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"kuoann.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"Gittalk","order":1},"disqus":{"text":"Disqus","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp","menu_item":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kuoann.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"Gittalk","order":1},"disqus":{"text":"Disqus","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="專案在編譯支援多語系的程式庫時，可能會產生一堆用不到的語系資源 (衛星組件 (Satellite Assembly))。若僅會用到部分語系時，可於專案檔 (*.csproj) 內加入 &lt;SatelliteResourceLanguages&gt; &lt;PropertyGroup&gt;  &lt;SatelliteResourceLanguages&gt;en;zh-TW&lt;&#x2F;Sat">
 <meta property="og:type" content="article">
@@ -31,7 +30,7 @@
 <meta property="og:description" content="專案在編譯支援多語系的程式庫時，可能會產生一堆用不到的語系資源 (衛星組件 (Satellite Assembly))。若僅會用到部分語系時，可於專案檔 (*.csproj) 內加入 &lt;SatelliteResourceLanguages&gt; &lt;PropertyGroup&gt;  &lt;SatelliteResourceLanguages&gt;en;zh-TW&lt;&#x2F;Sat">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2022-10-19T14:38:55.000Z">
-<meta property="article:modified_time" content="2023-04-23T07:44:02.750Z">
+<meta property="article:modified_time" content="2023-12-23T15:59:57.330Z">
 <meta property="article:author" content="KuoAnn">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="ASP.NET Core">
@@ -50,8 +49,10 @@
 <title>指定 .NET 編譯時所產生的語系資源檔 | 郭安安的筆記碎片</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR8M77W066"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-JR8M77W066","only_pageview":false}</script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-JR8M77W066","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
 
 
 
@@ -68,8 +69,8 @@
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切換導航欄" role="button">
         <span class="toggle-line"></span>
@@ -89,7 +90,7 @@
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -131,15 +132,9 @@
     </div>
   </div>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
@@ -160,11 +155,11 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">KuoAnn</p>
   <div class="site-description" itemprop="description">Coding 就是複製貼上改一下</div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
@@ -184,7 +179,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author site-overview-item animated">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
         <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1b2Fubg==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kuoann"><i class="fab fa-github fa-fw"></i>GitHub</span>
       </span>
@@ -192,8 +187,6 @@
         <span class="exturl" data-url="bWFpbHRvOmI1NDc0NDA0MEBnbWFpbC5jb20=" title="E-Mail → mailto:b54744040@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
       </span>
   </div>
-
-
 
 <div class="links-of-blogroll motion-element links-of-blogroll-block">
 <div class="links-of-blogroll-title">
@@ -230,23 +223,38 @@
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
-  <div class="back-to-top" role="button" aria-label="回到頂端">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+        <div class="pjax">
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相關文章
   </div>
-  <div class="reading-progress-bar"></div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/posts/19958632/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-16</time>
+        <br>
+      .NET Core 自動更新版號
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/posts/4026304689/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-17</time>
+        <br>
+      Windows 自動封鎖 IP
+      </a>
+    </li>
+  </ul>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
+          </div>
+        </div>
+        </div>
+  </aside>
 
+
+    </div>
 
     <div class="main-inner post posts-expand">
 
@@ -295,7 +303,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2023-04-23 15:44:02" itemprop="dateModified" datetime="2023-04-23T15:44:02+08:00">2023-04-23</time>
+      <time title="修改時間：2023-12-23 23:59:57" itemprop="dateModified" datetime="2023-12-23T23:59:57+08:00">2023-12-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -330,8 +338,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <p>專案在編譯支援多語系的程式庫時，可能會產生一堆用不到的語系資源 (<span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL2V4dGVuc2lvbnMvY3JlYXRlLXNhdGVsbGl0ZS1hc3NlbWJsaWVzP1dULm1jX2lkPURPUC1NVlAtMzc1ODA=">衛星組件 (Satellite Assembly)<i class="fa fa-external-link-alt"></i></span>)。若僅會用到部分語系時，可於專案檔 (*.csproj) 內加入 &lt;<span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL3Byb2plY3Qtc2RrL21zYnVpbGQtcHJvcHM/V1QubWNfaWQ9RE9QLU1WUC0zNzU4MCNzYXRlbGxpdGVyZXNvdXJjZWxhbmd1YWdlcw==">SatelliteResourceLanguages<i class="fa fa-external-link-alt"></i></span>&gt;</p>
+    <div class="post-body" itemprop="articleBody"><p>專案在編譯支援多語系的程式庫時，可能會產生一堆用不到的語系資源 (<span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL2V4dGVuc2lvbnMvY3JlYXRlLXNhdGVsbGl0ZS1hc3NlbWJsaWVzP1dULm1jX2lkPURPUC1NVlAtMzc1ODA=">衛星組件 (Satellite Assembly)<i class="fa fa-external-link-alt"></i></span>)。若僅會用到部分語系時，可於專案檔 (*.csproj) 內加入 &lt;<span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL3Byb2plY3Qtc2RrL21zYnVpbGQtcHJvcHM/V1QubWNfaWQ9RE9QLU1WUC0zNzU4MCNzYXRlbGxpdGVyZXNvdXJjZWxhbmd1YWdlcw==">SatelliteResourceLanguages<i class="fa fa-external-link-alt"></i></span>&gt;</p>
 <figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">SatelliteResourceLanguages</span>&gt;</span>en;zh-TW<span class="tag">&lt;/<span class="name">SatelliteResourceLanguages</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
 <span id="more"></span>
@@ -344,27 +351,6 @@
     
     
     
-      
-  <div class="popular-posts-header">相關文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-        <div class="popular-posts-date">2022-10-16</div>
-      <div class="popular-posts-title"><a href="posts/19958632/" rel="bookmark">.NET Core 自動更新版號</a></div>
-        <div class="popular-posts-excerpt"><p><p>以下是 C# 專案建置時自動更新版本號的設定範例</p>
-<ul>
-<li>利用專案檔的 <code>&lt;VersionSuffix&gt;</code> 指定時間格式</li>
-<li> Ex. 建置時間：<code>2022/10/16 15:07</code> -&gt; 版號：<code>1.22.1016.1507</code></li>
-<li>可使用 <code>Condition</code> 屬性增加其他判斷</li>
-</ul></p></div>
-    </li>
-    <li class="popular-posts-item">
-        <div class="popular-posts-date">2022-10-17</div>
-      <div class="popular-posts-title"><a href="posts/4026304689/" rel="bookmark">Windows 自動封鎖 IP</a></div>
-        <div class="popular-posts-excerpt"><p><p>自架的對外伺服器常被陌生 IP try 帳密，導致事件檢視器常常卡一堆登入失敗的紀錄而影響判讀，於是決定寫隻簡單的程式來監聽 Event Log 並即時將登入失敗的 IP 加到封鎖清單中。原本以為網路上查查資料，複製貼上改一下應該一小時左右就能搞定，結果各種撞牆卡了我一整天才完成，特此紀錄一下相關注意事項！</p>
-<p><img data-src="/posts/4026304689/20221017233626.png" alt="Event Log"><br><img data-src="/posts/4026304689/20221017221448.png" alt="Attack Bar Chart">  </p></p></div>
-    </li>
-  </ul>
-
 
     <footer class="post-footer">
           <div class="post-tags">
@@ -379,12 +365,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/posts/4026304689/" rel="prev" title="Windows 自動封鎖 IP">
-                  <i class="fa fa-chevron-left"></i> Windows 自動封鎖 IP
+                  <i class="fa fa-angle-left"></i> Windows 自動封鎖 IP
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/posts/2185127750/" rel="next" title="Hexo Theme - Next">
-                  Hexo Theme - Next <i class="fa fa-chevron-right"></i>
+                  Hexo Theme - Next <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -421,38 +407,49 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 2022 – 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">KuoAnn</span>
-</div>
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KuoAnn</span>
+  </div>
 
     </div>
   </footer>
 
   
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
   <script size="600" alpha="0.3" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
 
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
+
 
 
 
   <script src="/js/third-party/fancybox.js"></script>
 
   <script src="/js/third-party/pace.js"></script>
+
 
   
 

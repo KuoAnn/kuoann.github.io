@@ -6,7 +6,7 @@
   <link href="https://kuoann.github.io/atom.xml" rel="self"/>
   
   <link href="https://kuoann.github.io/"/>
-  <updated>2023-12-23T15:29:15.691Z</updated>
+  <updated>2023-12-23T15:59:57.326Z</updated>
   <id>https://kuoann.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://kuoann.github.io/posts/3327344738/"/>
     <id>https://kuoann.github.io/posts/3327344738/</id>
     <published>2023-12-22T20:59:33.000Z</published>
-    <updated>2023-12-23T15:29:15.691Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;What-is-AI&quot;&gt;&lt;a href=&quot;#What-is-AI&quot; class=&quot;headerlink&quot; title=&quot;What is AI&quot;&gt;&lt;/a&gt;What is AI&lt;/h2&gt;&lt;ul&gt;
@@ -46,7 +46,7 @@
     <link href="https://kuoann.github.io/posts/582090662/"/>
     <id>https://kuoann.github.io/posts/582090662/</id>
     <published>2023-12-03T04:30:23.000Z</published>
-    <updated>2023-12-23T15:29:15.712Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;簡介&quot;&gt;&lt;a href=&quot;#簡介&quot; class=&quot;headerlink&quot; title=&quot;簡介&quot;&gt;&lt;/a&gt;簡介&lt;/h2&gt;&lt;ul&gt;
@@ -75,7 +75,7 @@
     <link href="https://kuoann.github.io/posts/3949037657/"/>
     <id>https://kuoann.github.io/posts/3949037657/</id>
     <published>2023-06-01T04:49:34.000Z</published>
-    <updated>2023-12-23T15:29:15.686Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
       
@@ -102,7 +102,7 @@
     <link href="https://kuoann.github.io/posts/3263803727/"/>
     <id>https://kuoann.github.io/posts/3263803727/</id>
     <published>2023-05-26T01:13:29.000Z</published>
-    <updated>2023-12-23T15:29:15.710Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;ul&gt;
@@ -129,7 +129,7 @@
     <link href="https://kuoann.github.io/posts/1661076175/"/>
     <id>https://kuoann.github.io/posts/1661076175/</id>
     <published>2023-05-16T05:11:57.000Z</published>
-    <updated>2023-12-23T15:29:15.714Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
       
@@ -154,7 +154,7 @@
     <link href="https://kuoann.github.io/posts/1763796179/"/>
     <id>https://kuoann.github.io/posts/1763796179/</id>
     <published>2023-04-22T23:46:19.000Z</published>
-    <updated>2023-12-23T15:29:15.729Z</updated>
+    <updated>2023-12-23T15:59:57.330Z</updated>
     
     
       
@@ -182,7 +182,7 @@
     <link href="https://kuoann.github.io/posts/1976722200/"/>
     <id>https://kuoann.github.io/posts/1976722200/</id>
     <published>2023-03-31T22:09:50.000Z</published>
-    <updated>2023-12-23T15:29:15.732Z</updated>
+    <updated>2023-12-23T15:59:57.330Z</updated>
     
     
     <summary type="html">&lt;ul&gt;
@@ -210,7 +210,7 @@
     <link href="https://kuoann.github.io/posts/724330086/"/>
     <id>https://kuoann.github.io/posts/724330086/</id>
     <published>2023-02-23T18:40:58.000Z</published>
-    <updated>2023-12-23T15:29:15.736Z</updated>
+    <updated>2023-12-23T15:59:57.330Z</updated>
     
     
       
@@ -242,7 +242,7 @@
     <link href="https://kuoann.github.io/posts/1250676027/"/>
     <id>https://kuoann.github.io/posts/1250676027/</id>
     <published>2023-02-12T04:40:31.000Z</published>
-    <updated>2023-12-23T15:29:15.717Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;p&gt;Chrome 自 59 版起內建了 &lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly9kZXZlbG9wZXIuY2hyb21lLmNvbS9ibG9nL2hlYWRsZXNzLWNocm9tZS8=&quot;&gt;Headless&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt; 模式，允許透過命令列啟動 Chrome 以無 GUI 方式執行，藉此可透過 C# 套件快速實作開啟網頁並擷圖等功能&lt;/p&gt;</summary>
@@ -265,7 +265,7 @@
     <link href="https://kuoann.github.io/posts/1306031307/"/>
     <id>https://kuoann.github.io/posts/1306031307/</id>
     <published>2022-12-02T09:10:02.000Z</published>
-    <updated>2023-12-23T15:29:15.720Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;p&gt;以前寫的 Vue2 都忘得差不多了，藉著最近接到 Vue3 專案的機會，重新學習一下&lt;/p&gt;
@@ -293,7 +293,7 @@
     <link href="https://kuoann.github.io/posts/2185127750/"/>
     <id>https://kuoann.github.io/posts/2185127750/</id>
     <published>2022-10-23T12:14:48.000Z</published>
-    <updated>2023-02-12T12:25:50.301Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;p&gt;本站 Hexo 使用 &lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=&quot;&gt;NexT&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt; 主題，須注意 Github Repo 有新舊版之分，舊版已不再維護，為避免混亂以下僅提供新版連結&lt;/p&gt;
@@ -333,7 +333,7 @@
     <link href="https://kuoann.github.io/posts/2071791023/"/>
     <id>https://kuoann.github.io/posts/2071791023/</id>
     <published>2022-10-19T14:38:55.000Z</published>
-    <updated>2023-04-23T07:44:02.750Z</updated>
+    <updated>2023-12-23T15:59:57.330Z</updated>
     
     
     <summary type="html">&lt;p&gt;專案在編譯支援多語系的程式庫時，可能會產生一堆用不到的語系資源 (&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL2V4dGVuc2lvbnMvY3JlYXRlLXNhdGVsbGl0ZS1hc3NlbWJsaWVzP1dULm1jX2lkPURPUC1NVlAtMzc1ODA=&quot;&gt;衛星組件 (Satellite Assembly)&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;)。若僅會用到部分語系時，可於專案檔 (*.csproj) 內加入 &amp;lt;&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvdG5ldC9jb3JlL3Byb2plY3Qtc2RrL21zYnVpbGQtcHJvcHM/V1QubWNfaWQ9RE9QLU1WUC0zNzU4MCNzYXRlbGxpdGVyZXNvdXJjZWxhbmd1YWdlcw==&quot;&gt;SatelliteResourceLanguages&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;&amp;gt;&lt;/p&gt;
@@ -359,7 +359,7 @@
     <link href="https://kuoann.github.io/posts/4026304689/"/>
     <id>https://kuoann.github.io/posts/4026304689/</id>
     <published>2022-10-17T14:12:10.000Z</published>
-    <updated>2023-04-23T07:44:02.749Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;p&gt;自架的對外伺服器常被陌生 IP try 帳密，導致事件檢視器常常卡一堆登入失敗的紀錄而影響判讀，於是決定寫隻簡單的程式來監聽 Event Log 並即時將登入失敗的 IP 加到封鎖清單中。原本以為網路上查查資料，複製貼上改一下應該一小時左右就能搞定，結果各種撞牆卡了我一整天才完成，特此紀錄一下相關注意事項！&lt;/p&gt;
@@ -385,7 +385,7 @@
     <link href="https://kuoann.github.io/posts/19958632/"/>
     <id>https://kuoann.github.io/posts/19958632/</id>
     <published>2022-10-16T07:08:26.000Z</published>
-    <updated>2022-10-23T11:43:32.574Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;p&gt;以下是 C# 專案建置時自動更新版本號的設定範例&lt;/p&gt;
@@ -413,7 +413,7 @@
     <link href="https://kuoann.github.io/posts/4215572637/"/>
     <id>https://kuoann.github.io/posts/4215572637/</id>
     <published>2022-10-15T11:26:10.000Z</published>
-    <updated>2022-10-23T11:43:32.574Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;p&gt;某次接到的需求需實現以下功能，特此紀錄一下&lt;/p&gt;
@@ -446,7 +446,7 @@
     <link href="https://kuoann.github.io/posts/587752702/"/>
     <id>https://kuoann.github.io/posts/587752702/</id>
     <published>2022-10-05T13:18:53.000Z</published>
-    <updated>2022-10-24T01:27:42.991Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;推薦外掛&quot;&gt;&lt;a href=&quot;#推薦外掛&quot; class=&quot;headerlink&quot; title=&quot;推薦外掛&quot;&gt;&lt;/a&gt;推薦外掛&lt;/h2&gt;&lt;ol&gt;
@@ -481,7 +481,7 @@
     <link href="https://kuoann.github.io/posts/534415561/"/>
     <id>https://kuoann.github.io/posts/534415561/</id>
     <published>2022-10-02T13:09:06.000Z</published>
-    <updated>2022-10-23T11:43:32.573Z</updated>
+    <updated>2023-12-23T15:59:57.326Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近決定養成寫 Blog 的習慣，以隨手筆記技術文章，基於以下理由決定選用 Github Page + Hexo + NexT&lt;/p&gt;
