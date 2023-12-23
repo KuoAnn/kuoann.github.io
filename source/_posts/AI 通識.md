@@ -1,9 +1,10 @@
 ---
 title: AI 通識
 categories: Others
-tags: 
-    - AI
-date: 2023-12-23T12:59:33+08:00
+tags:
+  - AI
+abbrlink: 3327344738
+date: 2023-12-23 04:59:33
 ---
 
 ## What is AI

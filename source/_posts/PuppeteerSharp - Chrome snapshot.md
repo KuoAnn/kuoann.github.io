@@ -1,11 +1,12 @@
 ---
 title: Puppeteer Sharp - Chrome snapshot
 categories: C#
-tags: 
-    - C# 
-    - Chrome Headless
-    - Puppeteer Sharp
-date: 2023-02-12T20:40:31+08:00
+tags:
+  - C#
+  - Chrome Headless
+  - Puppeteer Sharp
+abbrlink: 1250676027
+date: 2023-02-12 12:40:31
 ---
 
 Chrome 自 59 版起內建了 [Headless](<https://developer.chrome.com/blog/headless-chrome/>) 模式，允許透過命令列啟動 Chrome 以無 GUI 方式執行，藉此可透過 C# 套件快速實作開啟網頁並擷圖等功能

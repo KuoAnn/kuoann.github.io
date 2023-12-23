@@ -1,9 +1,10 @@
 ---
 title: NPOI 自適應欄寬
 categories: C#
-tags: 
-    - C#
-date: 2023-05-16T21:11:57+08:00
+tags:
+  - C#
+abbrlink: 1661076175
+date: 2023-05-16 13:11:57
 ---
 
 ``` csharp

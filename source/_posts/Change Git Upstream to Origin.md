@@ -1,10 +1,11 @@
 ---
 title: Change Git Upstream to Origin
 categories: Git
-tags: 
-    - Git
-    - Bash
-date: 2023-06-01T20:49:34+08:00
+tags:
+  - Git
+  - Bash
+abbrlink: 3949037657
+date: 2023-06-01 12:49:34
 ---
 
 ``` sh

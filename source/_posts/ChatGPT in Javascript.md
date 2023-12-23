@@ -1,11 +1,12 @@
 ---
 title: OpenAI API in Javascript
 categories: Javascript
-tags: 
-    - Openai
-    - ChatGPT
-    - Javascript
-date: 2023-05-26T17:13:29+08:00
+tags:
+  - Openai
+  - ChatGPT
+  - Javascript
+abbrlink: 3263803727
+date: 2023-05-26 09:13:29
 ---
 
 * 透過 Js 發送 OpenAI 官方提供的 API (<https://api.openai.com/v1/chat/completions>)，需至 [官方網站](https://platform.openai.com/account/api-keys) 申請 API Key 才能使用

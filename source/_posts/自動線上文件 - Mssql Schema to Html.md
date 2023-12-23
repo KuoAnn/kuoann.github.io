@@ -1,12 +1,13 @@
 ---
 title: 自動線上文件 - Mssql Schema to Html
 categories: Sql
-tags: 
-    - Mssql
-    - html
-    - Batch
-    - Windows
-date: 2023-04-01T14:09:50+08:00
+tags:
+  - Mssql
+  - html
+  - Batch
+  - Windows
+abbrlink: 1976722200
+date: 2023-04-01 06:09:50
 ---
 
 - 將資料庫結構轉 Html 的語法

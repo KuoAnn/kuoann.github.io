@@ -1,10 +1,11 @@
 ---
 title: Github copilot
 categories: Others
-tags: 
-    - Github Copilot
-    - AI
-date: 2023-12-03T20:30:23+08:00
+tags:
+  - Github Copilot
+  - AI
+abbrlink: 582090662
+date: 2023-12-03 12:30:23
 ---
 
 ## 簡介

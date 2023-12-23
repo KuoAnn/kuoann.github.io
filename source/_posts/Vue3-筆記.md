@@ -1,10 +1,11 @@
 ---
 title: Vue3 筆記
 categories: Node.js
-date: 2022-12-02 17:10:02
-tags: 
+tags:
   - Node.js
   - Vue
+abbrlink: 1306031307
+date: 2022-12-02 17:10:02
 ---
 
 以前寫的 Vue2 都忘得差不多了，藉著最近接到 Vue3 專案的機會，重新學習一下
