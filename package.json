@@ -31,6 +31,6 @@
     "hexo-theme-next": "^8.19.1"
   },
   "devDependencies": {
-    "hexo-related-posts": "^1.5.1"
+    "hexo-related-posts": "^1.5.2"
   }
 }
